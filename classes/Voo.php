@@ -2,17 +2,18 @@
 
 class Voo {
   protected string $codigo;
-  protected string $companhia;
+  protected $companhia;
   protected $frequencia = array();
   protected $origem;
   protected $destino;  
   protected DateTime $horario_p;
   protected DateTime $horario_c;
+  protected DateInterval $duracaoVoo; 
   protected $aviao_plane;
   protected int $num_assentos;
   protected float $tarifa;
 
-public function __construct(string $cod, string $comp, array $fre, $origem, $destino, DateTime $hp, DateTime $hc, $aviao, float $ta){
+public function __construct(string $cod,$comp, array $fre, $origem, $destino, DateTime $hp, DateTime $hc, $aviao, float $ta){
     // Verifica se as duas primeiras letras do código coincidem com a sigla da companhia, se sim cria o objeto voo
     $sigla = substr($cod, 0, 2);
     if ($sigla != $comp->getSigla()) {
@@ -28,8 +29,19 @@ public function __construct(string $cod, string $comp, array $fre, $origem, $des
       $this->aviao_plane = $aviao;
       $this->num_assentos = $aviao->getCapacidadePassageiros();
       $this->tarifa = $ta;
+
+      $this->duracaoVoo = Voo::duracaoVoo($this->horario_p,$this->horario_c);
     }
 }
+  public function duracaoVoo(DateTime $horario_p,Datetime $horario_c) :DateInterval
+  {
+    $interval = $horario_p->diff($horario_c);
+    return $interval;  
+  }
+  public function getDuracao() :DateInterval
+  {
+    return $this->duracaoVoo;
+  }
   public function getCodigo() :string
   {
     return $this->codigo;
@@ -81,5 +93,15 @@ public function __construct(string $cod, string $comp, array $fre, $origem, $des
     $this->frequencia[4] = $q1;
     $this->frequencia[5] = $s1;
     $this->frequencia[6] = $s2;
+   }
+   public function detalhes() :void
+   {
+    $descricao = "<h2>Voo" . $this->codigo . "</h2>";
+    $descricao .= "<p><strong>Companhia Responsavel:</strong> " . $this->getAviaoP()->getModelo() . "</p>";
+    $descricao .= "<p><strong>Origem:</strong> " . $this->origem . "</p>";
+    $descricao .= "<p><strong>Destino:</strong> " . $this->destino . "</p>";
+    $descricao .= "<p><strong>Horario de Partida:</strong> R$ " . $this->horario_p->format('Y/m/d H:i:s') . "</p>";
+    $descricao .= "<p><strong>Horario de Chegada:</strong> R$ " . $this->horario_c->format('Y/m/d H:i:s') . "</p>";
+    echo $descricao;  
    }
   }

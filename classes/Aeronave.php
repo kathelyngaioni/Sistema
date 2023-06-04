@@ -56,7 +56,7 @@ class Aeronave {
     return $this->registro;
   }
   
-  public function validaRegistro($registro) :bool
+  private function validaRegistro($registro) :bool
   {
     //Valida o registro da aeronave
     $prefixo = substr($registro, 0, 2);
@@ -70,7 +70,7 @@ class Aeronave {
     }
   }
 
-  public function montaArrayAssentos() :void
+  private function montaArrayAssentos() :void
   {
     $a = $this->capacidadePassageiros; //num assentos total
     $b = $this->num_assentos_por_fileira;

@@ -1,19 +1,18 @@
 <?php
 
-class Voo{
-  protected $codigo;
-  protected $companhia;
+class Voo {
+  protected string $codigo;
+  protected string $companhia;
   protected $frequencia = array();
   protected $origem;
   protected $destino;  
-  protected $horario_p;
-  protected $horario_c;
+  protected DateTime $horario_p;
+  protected DateTime $horario_c;
   protected $aviao_plane;
-  protected $num_assentos;
-  protected $tarifa;
-  protected $aviao_plane;
+  protected int $num_assentos;
+  protected float $tarifa;
 
-public function __construct($cod, $comp, $fre, $origem, $destino, $hp, $hc, $aviao, $ta){
+public function __construct(string $cod, string $comp, array $fre, $origem, $destino, DateTime $hp, DateTime $hc, $aviao, float $ta){
     // Verifica se as duas primeiras letras do código coincidem com a sigla da companhia, se sim cria o objeto voo
     $sigla = substr($cod, 0, 2);
     if ($sigla != $comp->getSigla()) {
@@ -31,27 +30,33 @@ public function __construct($cod, $comp, $fre, $origem, $destino, $hp, $hc, $avi
       $this->tarifa = $ta;
     }
 }
-  public function getCodigo(){
+  public function getCodigo() :string
+  {
     return $this->codigo;
   }
 
-  public function getCompanhia(){
+  public function getCompanhia() :string
+  {
     return $this->companhia;
   }
 
-  public function getAeroPartida(){
+  public function getAeroPartida()
+  {
     return $this->origem;
   }
 
-  public function getAeroChegada(){
+  public function getAeroChegada()
+  {
     return $this->destino;
   }
 
-  public function getHoraPartida(){
+  public function getHoraPartida() :DateTime
+  {
     return $this->horario_p;
   }
 
-  public function getHoraChegada(){
+  public function getHoraChegada() :DateTime
+  {
     return $this->horario_c;
   }
 
@@ -59,11 +64,13 @@ public function __construct($cod, $comp, $fre, $origem, $destino, $hp, $hc, $avi
     return $this->aviao_plane;
   }
   
-  public function getFrequencia(){
+  public function getFrequencia() :array
+  {
     return $this->frequencia;
   }
 
-  public function getTarifa(){
+  public function getTarifa() :float
+  {
     return $this->tarifa;
   }
   public function AlterFreq($d, $s, $t, $q, $q1, $s1, $s2){

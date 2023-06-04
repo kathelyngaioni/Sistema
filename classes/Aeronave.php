@@ -2,16 +2,16 @@
 
 class Aeronave {
 
-  private $pertencimento; //toda aeronave pertence a uma companhia aerea
-  private $fabricante;
-  private $modelo;
-  private $capacidadePassageiros;
-  private $capacidadeCarga;
-  private $registro;
+  private string $pertencimento; //toda aeronave pertence a uma companhia aerea
+  private string $fabricante;
+  private string $modelo;
+  private int $capacidadePassageiros;
+  private float $capacidadeCarga;
+  private string $registro;
   public $assentos = array();
-  private $num_assentos_por_fileira;
+  private int $num_assentos_por_fileira;
 
- public function __construct($pertencimento,$fabricante, $modelo, $capacidadePassageiros, $capacidadeCarga, $registro, $num_assentos_f){
+ public function __construct(string $pertencimento,string $fabricante, string $modelo, int $capacidadePassageiros, float $capacidadeCarga, string $registro, int $num_assentos_f){
     if($this->validaRegistro($registro) == 1){
       $this->pertencimento = $pertencimento;
       $this->fabricante = $fabricante;
@@ -26,31 +26,38 @@ class Aeronave {
     }
   }
   
-  public function getFabricante(){
+  public function getFabricante() :string
+  {
     return $this->fabricante;
   }
   
-  public function getModelo(){
+  public function getModelo() :string
+  {
     return $this->modelo;
   }
 
-  public function getNumAssentosPorFileira(){
+  public function getNumAssentosPorFileira() :int
+  {
     return $this->num_assentos_por_fileira;
   }
   
-  public function getCapacidadePassageiros(){
+  public function getCapacidadePassageiros() :int
+  {
     return $this->capacidadePassageiros;
   }
   
-  public function getCapacidadeCarga(){
+  public function getCapacidadeCarga() :float
+  {
     return $this->capacidadeCarga;
   }
   
-  public function getRegistro(){
+  public function getRegistro() :string
+  {
     return $this->registro;
   }
   
-  public function validaRegistro($registro){
+  public function validaRegistro($registro) :bool
+  {
     //Valida o registro da aeronave
     $prefixo = substr($registro, 0, 2);
     $sufixo = substr($registro, 3, 3);
@@ -63,7 +70,8 @@ class Aeronave {
     }
   }
 
-  public function montaArrayAssentos(){
+  public function montaArrayAssentos() :void
+  {
     $a = $this->capacidadePassageiros; //num assentos total
     $b = $this->num_assentos_por_fileira;
     $c = $a/$b; //num fileiras
@@ -74,11 +82,13 @@ class Aeronave {
     }
   }
 
-  public function getArrayAssentos(){
+  public function getArrayAssentos()
+  {
     return implode(" ", $this->assentos);
   }
 
- public function gerarDescricao(){
+ public function gerarDescricao() :void
+ {
     $descricao = "<br>Aeronave ".$this->fabricante." ".$this->modelo." com registro ".$this->registro."<br>";
     $descricao .= "Capacidade de ".$this->capacidadePassageiros." passageiros e ".$this->capacidadeCarga." kg de carga.<br>";
     $descricao .= "Pertencimento ".$this->pertencimento."<br>";

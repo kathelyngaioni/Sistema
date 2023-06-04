@@ -5,7 +5,8 @@ class Calendario
  private $anos = [];
  private $voos = [];
  public function __construct(){}   
- public function adicionarVoo($voo) {
+ public function adicionarVoo($voo) :void
+ {
     array_push($this->voos, $voo);
     $this->adicionarViagemSemanal($voo);
   }
@@ -57,4 +58,3 @@ class Calendario
   }
 }
 ?>
-}

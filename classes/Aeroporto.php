@@ -49,4 +49,3 @@ class Aeroporto
       return $this->Geoposicao[1];
     }  
   }
-}

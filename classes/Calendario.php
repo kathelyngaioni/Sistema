@@ -56,9 +56,12 @@ class Calendario
     }
     return [];
   }
-  public function getVoos() :array
+  public function getVoos()
   {
-    return $this->voos;
+    foreach($this->voos as $voo)
+    {
+      $voo->detalhes();
+    }
   }
 }
 ?>

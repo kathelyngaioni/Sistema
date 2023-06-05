@@ -56,5 +56,9 @@ class Calendario
     }
     return [];
   }
+  public function getVoos() :array
+  {
+    return $this->voos;
+  }
 }
 ?>

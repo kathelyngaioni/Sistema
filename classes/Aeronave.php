@@ -25,7 +25,10 @@ class Aeronave {
       throw new Exception("Registro inválido");
     }
   }
-  
+  public function getPertencimento() :string
+  {
+    return $this->pertencimento;
+  }
   public function getFabricante() :string
   {
     return $this->fabricante;

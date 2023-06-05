@@ -47,7 +47,7 @@ public function __construct(string $cod,$comp, array $fre, $origem, $destino, Da
     return $this->codigo;
   }
 
-  public function getCompanhia() :string
+  public function getCompanhia()
   {
     return $this->companhia;
   }
@@ -97,11 +97,11 @@ public function __construct(string $cod,$comp, array $fre, $origem, $destino, Da
    public function detalhes() :void
    {
     $descricao = "<h2>Voo" . $this->codigo . "</h2>";
-    $descricao .= "<p><strong>Companhia Responsavel:</strong> " . $this->getAviaoP()->getModelo() . "</p>";
-    $descricao .= "<p><strong>Origem:</strong> " . $this->origem . "</p>";
-    $descricao .= "<p><strong>Destino:</strong> " . $this->destino . "</p>";
-    $descricao .= "<p><strong>Horario de Partida:</strong> R$ " . $this->horario_p->format('Y/m/d H:i:s') . "</p>";
-    $descricao .= "<p><strong>Horario de Chegada:</strong> R$ " . $this->horario_c->format('Y/m/d H:i:s') . "</p>";
+    $descricao .= "<p><strong>Companhia Responsavel:</strong> " . $this->getAviaoP()->getPertencimento(). "</p>";
+    $descricao .= "<p><strong>Origem:</strong> " . $this->origem->getNome() . "</p>";
+    $descricao .= "<p><strong>Destino:</strong> " . $this->destino->getNome() . "</p>";
+    $descricao .= "<p><strong>Horario de Partida:</strong> " . $this->horario_p->format('Y/m/d H:i:s') . "</p>";
+    $descricao .= "<p><strong>Horario de Chegada:</strong> " . $this->horario_c->format('Y/m/d H:i:s') . "</p>";
     echo $descricao;  
    }
   }
